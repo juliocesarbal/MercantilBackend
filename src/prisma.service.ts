@@ -17,7 +17,10 @@ export class PrismaService extends PrismaClient implements OnModuleInit, OnModul
       port: parseInt(url.port),
       user: url.username,
       password: url.password,
-      database: url.pathname.slice(1), // Remove leading '/'
+      database: url.pathname.slice(1), // Remove leading '/',
+      ssl: {
+        rejectUnauthorized: false,
+      },
     });
 
     const adapter = new PrismaPg(pool);
